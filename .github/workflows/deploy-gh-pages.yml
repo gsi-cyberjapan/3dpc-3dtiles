@@ -45,6 +45,7 @@ jobs:
           touch out/.nojekyll
 
       - name: Modify paths for gh-pages
+        if: github.event.repository.private == false || github.repository_owner == 'gsi-cyberjapan'
         run: |
           find out -type f \( -name "*.html" -o -name "*.js" \) -exec sed -i "s|/styles/|/${{ github.event.repository.name }}/styles/|g" {} +
           find out -type f \( -name "*.html" -o -name "*.js" \) -exec sed -i "s|/images/|/${{ github.event.repository.name }}/images/|g" {} +
