@@ -1,10 +1,9 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     output: "export",
-    experimental: {
-        optimizePackageImports: ["@chakra-ui/react"],
-    },
-};
+    basePath: process.env.IS_PUBLIC_REPO ? "" : process.env.REPOSITORY_NAME ? `/${process.env.REPOSITORY_NAME}` : "",
+    assetPrefix: process.env.IS_PUBLIC_REPO ? "" : process.env.REPOSITORY_NAME ? `/${process.env.REPOSITORY_NAME}/` : "",
+    base: './',
+}
 
-export default nextConfig;
+module.exports = nextConfig
