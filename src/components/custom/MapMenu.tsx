@@ -105,7 +105,7 @@ export const MapMenu = ({
                 <Field.Root orientation="horizontal" px={1} mb="0.5rem">
                     <Field.Label>立体表示</Field.Label>
                     <Switch.Root px={1} checked={enableTerrain} onCheckedChange={(e) => onEnableTerrainChange(e.checked)}>
-                        <Switch.HiddenInput />
+                        <Switch.HiddenInput aria-label="立体表示" />
                         <Switch.Control>
                             <Switch.Thumb />
                         </Switch.Control>
@@ -114,7 +114,7 @@ export const MapMenu = ({
                 <Field.Root orientation="horizontal" px={1} mb="0.5rem">
                     <Field.Label>陰影表示</Field.Label>
                     <Switch.Root px={1} checked={enableShadow} onCheckedChange={(e) => onEnableShadowChange(e.checked)}>
-                        <Switch.HiddenInput />
+                        <Switch.HiddenInput aria-label="陰影表示" />
                         <Switch.Control>
                             <Switch.Thumb />
                         </Switch.Control>
@@ -146,7 +146,7 @@ export const MapMenu = ({
                 <Field.Root orientation="horizontal" px={1} mb="0.5rem">
                     <Field.Label>段彩表示</Field.Label>
                     <Switch.Root px={1} checked={enableColor} onCheckedChange={(e) => onEnableColorChange(e.checked)}>
-                        <Switch.HiddenInput />
+                        <Switch.HiddenInput aria-label="段彩表示" />
                         <Switch.Control>
                             <Switch.Thumb />
                         </Switch.Control>
@@ -194,7 +194,7 @@ export const MapMenu = ({
                 <Field.Root orientation="horizontal" px={1}>
                     <Field.Label>表示</Field.Label>
                     <Switch.Root px={1} checked={enablePointCloud} onCheckedChange={(e) => onEnablePointCloudChange(e.checked)}>
-                        <Switch.HiddenInput />
+                        <Switch.HiddenInput aria-label="点群表示" />
                         <Switch.Control>
                             <Switch.Thumb />
                         </Switch.Control>

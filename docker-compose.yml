@@ -1,0 +1,10 @@
+services:
+    test:
+        build: .
+        container_name: gsimaps_playwright_test
+        working_dir: /app
+        environment:
+            - CI=${CI}
+        volumes:
+            - .:/app
+            - /app/node_modules

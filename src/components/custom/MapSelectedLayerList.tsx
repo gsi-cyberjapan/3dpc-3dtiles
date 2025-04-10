@@ -61,7 +61,7 @@ const MapSelectedLayerListItem = ({ layerSet, onChange, onRemove }: MapSelectedL
 
     return (
         <HStack ref={setNodeRef} style={style} w="100%" gap={1} borderColor="border" borderWidth={1} borderRadius="md" p={1}>
-            <IconButton aria-label="Drag handle" variant="ghost" size="sm" {...attributes} {...listeners}>
+            <IconButton aria-label={`Drag handle ${layerSet.title}`} variant="ghost" size="sm" {...attributes} {...listeners}>
                 <LuGripVertical />
             </IconButton>
             <Stack w="100%" gap={1}>
@@ -83,7 +83,13 @@ const MapSelectedLayerListItem = ({ layerSet, onChange, onRemove }: MapSelectedL
                             <Slider.Thumbs />
                         </Slider.Control>
                     </Slider.Root>
-                    <IconButton colorPalette="red" variant="outline" size="2xs" onClick={() => onRemove(layerSet)}>
+                    <IconButton
+                        colorPalette="red"
+                        variant="outline"
+                        size="2xs"
+                        onClick={() => onRemove(layerSet)}
+                        aria-label={`削除 ${layerSet.title}`}
+                    >
                         <LuTrash2 />
                     </IconButton>
                 </HStack>

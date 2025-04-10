@@ -7,7 +7,12 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "format": "prettier --write \"**/*.{ts,tsx,.json}\""
+        "format": "prettier --write \"**/*.{ts,tsx,.json}\"",
+        "test": "docker compose run --rm test npx playwright test",
+        "test:e2e": "docker compose run --rm test npm run _test:e2e:inside",
+        "test:vrt": "docker compose run --rm test npm run _test:vrt:inside",
+        "_test:e2e:inside": "npx playwright test --project=e2e-chromium --project=e2e-mobile-safari",
+        "_test:vrt:inside": "npx playwright test --project=vrt-chromium-light --project=vrt-chromium-dark --project=vrt-mobile-safari"
     },
     "dependencies": {
         "@chakra-ui/react": "^3.11.0",
@@ -16,6 +21,7 @@
         "@dnd-kit/core": "^6.3.1",
         "@dnd-kit/sortable": "^10.0.0",
         "@emotion/react": "^11.14.0",
+        "@mapgrab/map-interface": "^0.0.3",
         "@turf/turf": "^7.2.0",
         "maplibre-gl": "4.7",
         "maplibre-gl-gsi-terrain": "^2.2.0",
@@ -31,6 +37,8 @@
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3",
+        "@mapgrab/playwright": "^0.0.3",
+        "@playwright/test": "^1.51.1",
         "@types/node": "^20",
         "@types/proj4": "^2.5.6",
         "@types/react": "^19",
@@ -38,6 +46,7 @@
         "eslint": "^9",
         "eslint-config-next": "15.2.1",
         "eslint-config-prettier": "^10.1.1",
+        "msw": "^2.7.3",
         "prettier": "^3.5.3",
         "prettier-plugin-organize-imports": "^4.1.0",
         "typescript": "^5"
