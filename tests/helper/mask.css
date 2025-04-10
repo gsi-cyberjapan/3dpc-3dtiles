@@ -1,0 +1,7 @@
+body {
+    background-color: #ff00ff;
+}
+
+.maplibregl-canvas {
+    opacity: 0;
+}

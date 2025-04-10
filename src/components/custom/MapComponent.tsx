@@ -15,6 +15,7 @@ import { useDem2ReliefProtocol } from "../../hooks/useDem2ReliefProtocol";
 import { LayerSet } from "../../hooks/useLayers";
 import { MapDem, MapDemTint } from "../../hooks/useMapDems";
 import { CenterInfoPopover } from "./CenterInfoPopover";
+import { MapTestSupporter } from "./MapTestSupporter";
 import { SearchInput } from "./SearchInput";
 
 const PointCloudOverlay = dynamic(() => import("./PointCloudOverlay").then((mod) => mod.PointCloudOverlay), { ssr: false });
@@ -146,6 +147,7 @@ export const MapComponent = ({
                 top={useBreakpointValue({ base: "60px", md: "8px" })}
                 left={useBreakpointValue({ base: "8px", md: "366px" })}
                 borderRadius="md"
+                zIndex={10}
             >
                 <SearchInput />
                 <CenterInfoPopover />
@@ -157,6 +159,7 @@ export const MapComponent = ({
                     <LuPlus />
                 </IconContext.Provider>
             </Center>
+            <MapTestSupporter />
         </Map>
     );
 };
