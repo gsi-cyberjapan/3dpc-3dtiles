@@ -1,0 +1,34 @@
+name: E2E Testing
+concurrency:
+    group: ${{ github.ref }}-e2e
+    cancel-in-progress: true
+on:
+    workflow_dispatch:
+    pull_request:
+        paths-ignore:
+            - "**/*.md"
+            - "**/README*"
+jobs:
+    Test-E2E:
+        timeout-minutes: 60
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Run Playwright tests
+              run: npm run test:e2e
+
+            - uses: actions/upload-artifact@v4
+              if: always()
+              id: playwright-report
+              with:
+                  name: playwright-report
+                  path: playwright-report/
+                  retention-days: 30
+
+            - uses: daun/playwright-report-summary@v3
+              if: always()
+              with:
+                  report-file: "playwright-report/results.json"
+                  comment-title: "E2E Test Results"
+                  custom-info: "[Download full Report](${{github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.playwright-report.outputs.artifact-id }})"
