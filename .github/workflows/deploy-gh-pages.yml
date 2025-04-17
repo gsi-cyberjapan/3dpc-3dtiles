@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
+
   workflow_dispatch:
 
 permissions:
@@ -20,7 +21,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -32,23 +32,12 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          NODE_ENV: production
-          REPOSITORY_NAME: ${{ github.event.repository.name }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: add nojekyll
-        run: |
-          mkdir -p out
-          touch out/.nojekyll
-
-      - name: Modify paths for gh-pages
-        if: github.event.repository.private == false || github.repository_owner == 'gsi-cyberjapan'
-        run: |
-          find out -type f \( -name "*.html" -o -name "*.js" \) -exec sed -i "s|/styles/|/${{ github.event.repository.name }}/styles/|g" {} +
-          find out -type f \( -name "*.html" -o -name "*.js" \) -exec sed -i "s|/images/|/${{ github.event.repository.name }}/images/|g" {} +
+        run: touch ./out/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

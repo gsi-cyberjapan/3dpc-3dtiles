@@ -10,11 +10,11 @@ export interface MapStyle {
 }
 
 const DEFAULT_MAP_STYLES: MapStyle[] = [
-    { id: "std-3d", name: "標準地図", style: `/styles/std.json`, icon: "/images/std.png", deletable: false },
-    { id: "pale-3d", name: "淡色地図", style: `/styles/pale.json`, icon: "/images/pale.png", deletable: false },
-    { id: "skeleton", name: "白地図", style: `/styles/skeleton.json`, icon: "/images/skeleton.png", deletable: false },
-    { id: "english", name: "English", style: `/styles/std-english.json`, icon: "/images/std-english.png", deletable: false },
-    { id: "seamlessphoto", name: "写真", style: "/styles/seamlessphoto.json", icon: "/images/seamlessphoto.png", deletable: false },
+    { id: "std-3d", name: "標準地図", style: `/3dpc-3dtiles/styles/std.json`, icon: "/3dpc-3dtiles/images/std.png", deletable: false },
+    { id: "pale-3d", name: "淡色地図", style: `/3dpc-3dtiles/styles/pale.json`, icon: "/3dpc-3dtiles/images/pale.png", deletable: false },
+    { id: "skeleton", name: "白地図", style: `/3dpc-3dtiles/styles/skeleton.json`, icon: "/3dpc-3dtiles/images/skeleton.png", deletable: false },
+    { id: "english", name: "English", style: `/3dpc-3dtiles/styles/std-english.json`, icon: "/3dpc-3dtiles/images/std-english.png", deletable: false },
+    { id: "seamlessphoto", name: "写真", style: "/3dpc-3dtiles/styles/seamlessphoto.json", icon: "/3dpc-3dtiles/images/seamlessphoto.png", deletable: false },
 ];
 
 export const useMapStyles = () => {
