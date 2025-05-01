@@ -1,0 +1,27 @@
+{
+    "version": 8,
+    "name": "gsimapvector",
+    "sources": {
+        "seamlessphoto": {
+            "type": "raster",
+            "minzoom": 2,
+            "maxzoom": 18,
+            "tiles": ["https://maps.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg"],
+            "attribution": "国土地理院"
+        }
+    },
+    "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "paint": {
+                "background-color": ["step", ["zoom"], "rgba(255,255,255,1)", 4, "rgba(190,210,255,1)", 8, "rgba(255,255,255,1)"]
+            }
+        },
+        {
+            "id": "seamlessphoto",
+            "source": "seamlessphoto",
+            "type": "raster"
+        }
+    ]
+}
