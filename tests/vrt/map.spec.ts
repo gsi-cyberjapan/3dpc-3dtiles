@@ -10,14 +10,14 @@ test("初期表示時のデザインが変更されていない", async ({ page,
 test("メニューを閉じた時のデザインが変更されていない", async ({ page, mapController }) => {
     await page.goto("/");
     await mapController("main").waitToMapLoaded();
-    await page.getByRole("button", { name: "点群タイル閲覧サイト" }).click();
+    await page.getByRole("button", { name: "点群タイル閲覧サイト 試験公開" }).click();
     await expect(page).toHaveScreenshot({ stylePath: path.join(__dirname, "../helper/mask.css") });
 });
 
 test("情報ポップオーバーのデザインが変更されていない", async ({ page, mapController }) => {
     await page.goto("/");
     await mapController("main").waitToMapLoaded();
-    await page.getByRole("button", { name: "点群タイル閲覧サイト" }).click();
+    await page.getByRole("button", { name: "点群タイル閲覧サイト 試験公開" }).click();
     await page.getByRole("button", { name: "情報" }).click();
     await expect(page).toHaveScreenshot({ stylePath: path.join(__dirname, "../helper/mask.css") });
 });
@@ -99,7 +99,7 @@ test("検索ボックスのサジェスト表示時のデザインが変更さ�
     });
     await page.goto("/");
     await mapController("main").waitToMapLoaded();
-    await page.getByRole("button", { name: "点群タイル閲覧サイト" }).click();
+    await page.getByRole("button", { name: "点群タイル閲覧サイト 試験公開" }).click();
     await page.getByRole("textbox", { name: "地名検索" }).fill("スカイツリー");
     await expect(page).toHaveScreenshot({ stylePath: path.join(__dirname, "../helper/mask.css") });
 });
