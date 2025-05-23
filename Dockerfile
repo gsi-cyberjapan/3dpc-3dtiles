@@ -11,13 +11,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-# ファイルの内容を確認
-RUN echo "Package.json content:" && cat package.json
-RUN echo "Package-lock.json content:" && head -n 50 package-lock.json
-# npmのバージョン確認
-RUN npm --version
-# デバッグ用にインストールを試みる
-RUN npm ci || (echo "npm ci failed, trying npm install" && npm install)
+RUN npm ci
 
 COPY . .
 
