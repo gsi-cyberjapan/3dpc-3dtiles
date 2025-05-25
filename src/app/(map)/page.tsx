@@ -43,7 +43,7 @@ export default function Page() {
                 <Accordion.Root variant="plain" collapsible defaultValue={["menu"]}>
                     <Accordion.Item value="menu">
                         <Accordion.ItemTrigger justifyContent="space-between" py="7px">
-                            <Heading>点群タイル閲覧サイト</Heading>
+                            <Heading>点群タイル閲覧サイト 試験公開</Heading>
                             <Accordion.ItemIndicator />
                         </Accordion.ItemTrigger>
                         <Accordion.ItemContent maxH="calc(100dvh - 62px)" overflowY="auto" scrollbar="hidden">

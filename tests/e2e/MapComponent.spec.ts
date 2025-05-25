@@ -10,7 +10,9 @@ test("Attributionが表示されている", async ({ page, mapController }) => {
     await page.goto("/");
     await mapController("main").waitToMapLoaded();
     await page.getByRole("button", { name: "点群タイル閲覧サイト" }).click();
-    await expect(page.getByText("国土地理院最適化ベクトルタイル(標準地図風スタイル) | © GSI Japan | 点群タイル閲覧サイト")).toBeVisible();
+    await expect(
+        page.getByText("国土地理院最適化ベクトルタイル(標準地図風スタイル) | © GSI Japan | 点群タイル閲覧サイト 試験公開"),
+    ).toBeVisible();
 });
 
 test("Attributionを閉じることができる", async ({ page, mapController }) => {
@@ -19,6 +21,6 @@ test("Attributionを閉じることができる", async ({ page, mapController }
     await page.getByRole("button", { name: "点群タイル閲覧サイト" }).click();
     await page.getByLabel("Toggle attribution").click();
     await expect(
-        page.getByText("国土地理院最適化ベクトルタイル(標準地図風スタイル) | © GSI Japan | 点群タイル閲覧サイト"),
+        page.getByText("国土地理院最適化ベクトルタイル(標準地図風スタイル) | © GSI Japan | 点群タイル閲覧サイト 試験公開"),
     ).not.toBeVisible();
 });

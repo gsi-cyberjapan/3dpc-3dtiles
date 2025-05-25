@@ -6,7 +6,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-    title: "点群タイル閲覧サイト",
+    title: "点群タイル閲覧サイト 試験公開",
 };
 
 export default function RootLayout(props: { children: React.ReactNode }) {
