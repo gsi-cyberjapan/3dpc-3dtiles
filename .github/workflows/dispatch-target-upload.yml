@@ -1,43 +1,43 @@
 name: dispatch target file updated
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - 'README*'
+    push:
+        branches:
+            - main
+        paths-ignore:
+            - "README*"
 
 jobs:
-  dispatch-target-updated:
-    strategy:
-      matrix:
-        repo: ['gsi-cyberjapan/3dpc-3dtiles']
-    name: dispatch-target-updated
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
+    dispatch-target-updated:
+        strategy:
+            matrix:
+                repo: ["gsi-cyberjapan/3dpc-3dtiles"]
+        name: dispatch-target-updated
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 2
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v44
-        with:
-          files_ignore: |
-            README*
-            **/*.md
+            - name: Get changed files
+              id: changed-files
+              uses: tj-actions/changed-files@v44
+              with:
+                  files_ignore: |
+                      README*
+                      **/*.md
 
-      - name: List changed files
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: |
-          echo "Changed files:"
-          echo "${{ steps.changed-files.outputs.all_changed_files }}"
+            - name: List changed files
+              if: steps.changed-files.outputs.any_changed == 'true'
+              run: |
+                  echo "Changed files:"
+                  echo "${{ steps.changed-files.outputs.all_changed_files }}"
 
-      - name: dispatch target-updated
-        if: steps.changed-files.outputs.any_changed == 'true'
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.AUTOMERGE_GITHUB_TOKEN }}
-          repository: ${{ matrix.repo }}
-          event-type: target-updated
-          client-payload: '{"changed_files": "${{ steps.changed-files.outputs.all_changed_files }}"}' 
+            - name: dispatch target-updated
+              if: steps.changed-files.outputs.any_changed == 'true'
+              uses: peter-evans/repository-dispatch@v1
+              with:
+                  token: ${{ secrets.AUTOMERGE_GITHUB_TOKEN }}
+                  repository: ${{ matrix.repo }}
+                  event-type: target-updated
+                  client-payload: '{"changed_files": "${{ steps.changed-files.outputs.all_changed_files }}"}'
