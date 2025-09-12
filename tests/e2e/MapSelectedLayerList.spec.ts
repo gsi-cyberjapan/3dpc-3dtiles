@@ -19,8 +19,11 @@ test("レイヤーの順番を変更できる", async ({ page, mapController }) 
     await page.getByRole("button", { name: "その他 その他" }).press("Tab");
     await page.getByRole("button", { name: "Drag handle" }).first().press("Enter");
     await page.getByRole("button", { name: "Drag handle" }).first().press("ArrowDown");
+    await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
     await page.getByRole("button", { name: "Drag handle" }).first().press("ArrowDown");
+    await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
     await page.getByRole("button", { name: "Drag handle" }).first().press("ArrowDown");
+    await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
     await page.getByRole("button", { name: "Drag handle" }).first().press("Enter");
     const dragFirstArialabel = await page.getByRole("button", { name: "Drag handle" }).first().getAttribute("aria-label");
     expect(dragFirstArialabel).toBe("Drag handle 輪島地区（9/23撮影）");
