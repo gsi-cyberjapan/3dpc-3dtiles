@@ -17,6 +17,10 @@ const getAbsoluteUrl = (path: string) => {
         return `${basePath}${path}`;
     }
 
+    if (basePath === "") {
+        return path;
+    }
+
     const repoName = "3dpc-3dtiles";
     return `https://gsi-cyberjapan.github.io/${repoName}${path}`;
 };
