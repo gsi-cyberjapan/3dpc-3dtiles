@@ -2,7 +2,7 @@
     "version": 8,
     "name": "gsimapvector",
     "glyphs": "https://gsi-cyberjapan.github.io/optimal_bvmap/glyphs/{fontstack}/{range}.pbf",
-    "sprite": "https://gsi-cyberjapan.github.io/optimal_bvmap/sprite/pale",
+    "sprite": "https://gsi-cyberjapan.github.io/optimal_bvmap/sprite/std",
     "sources": {
         "v": {
             "type": "vector",
