@@ -43,4 +43,4 @@ jobs:
                   repository: ${{ matrix.repo }}
                   event-type: target-updated
                   client-payload: >-
-                    ${{ format('{"changed_files": {0}}', steps.changed-files.outputs.all_changed_files) }}
+                      ${{ format('{"changed_files": {0}}', steps.changed-files.outputs.all_changed_files) }}
