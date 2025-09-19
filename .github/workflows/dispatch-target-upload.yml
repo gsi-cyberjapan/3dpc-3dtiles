@@ -26,11 +26,13 @@ jobs:
                   files_ignore: |
                       README*
                       **/*.md
+                  quotepath: "false"
+                  json: "true"
 
             - name: List changed files
               if: steps.changed-files.outputs.any_changed == 'true'
               run: |
-                  echo "Changed files:"
+                  echo "Changed files (JSON):"
                   echo "${{ steps.changed-files.outputs.all_changed_files }}"
 
             - name: dispatch target-updated
@@ -40,4 +42,5 @@ jobs:
                   token: ${{ secrets.AUTOMERGE_GITHUB_TOKEN }}
                   repository: ${{ matrix.repo }}
                   event-type: target-updated
-                  client-payload: '{"changed_files": "${{ steps.changed-files.outputs.all_changed_files }}"}'
+                  client-payload: >-
+                      ${{ format('{"changed_files": {0}}', steps.changed-files.outputs.all_changed_files) }}
