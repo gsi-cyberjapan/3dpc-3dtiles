@@ -40,14 +40,15 @@ jobs:
               id: build-payload
               run: |
                   raw='${{ steps.changed-files.outputs.all_changed_files }}'
-                  echo "RAW (newline-separated):"; printf '%s\n' "$raw"
+                  echo "RAW (space-separated):"; printf '%s\n' "$raw"
 
-                  # Build payload without using stdin to avoid blocking under act
-                  payload=$(jq -c -n --arg raw "$raw" \
-                    '$raw
-                     | split("\n")
-                     | map(select(length>0))
-                     | {changed_files: .}'
+                  # Normalize: remove spurious backslashes (act sometimes prints \メ\ニ...)
+                  normalized=$(printf '%s' "$raw" | tr -d '\\')
+                  echo "NORMALIZED:"; printf '%s\n' "$normalized"
+
+                  # Build payload without using stdin (avoid blocking under act)
+                  payload=$(jq -c -n --arg raw "$normalized" \
+                    '{changed_files: ($raw | split(" ") | map(select(length>0)))}'
                   )
 
                   # Validate & debug
