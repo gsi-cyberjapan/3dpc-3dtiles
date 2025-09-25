@@ -26,14 +26,34 @@ jobs:
                   files_ignore: |
                       README*
                       **/*.md
+                      .github/workflows/dispatch-target-upload.yml
                   quotepath: "false"
-                  json: "true"
+                  json: "false"
 
             - name: List changed files
               if: steps.changed-files.outputs.any_changed == 'true'
               run: |
                   echo "Changed files (JSON):"
                   echo "${{ steps.changed-files.outputs.all_changed_files }}"
+
+            - name: Build client payload (JSON)
+              id: build-payload
+              run: |
+                  raw='${{ steps.changed-files.outputs.all_changed_files }}'
+                  echo "RAW (space-separated):"; printf '%s\n' "$raw"
+
+                  # Normalize: remove spurious backslashes (act sometimes prints \メ\ニ...)
+                  normalized=$(printf '%s' "$raw" | tr -d '\\')
+                  echo "NORMALIZED:"; printf '%s\n' "$normalized"
+
+                  # Build payload without using stdin (avoid blocking under act)
+                  payload=$(jq -c -n --arg raw "$normalized" \
+                    '{changed_files: ($raw | split(" ") | map(select(length>0)))}'
+                  )
+
+                  # Validate & debug
+                  echo "PAYLOAD:"; echo "$payload" | jq .
+                  echo "json=$payload" >> "$GITHUB_OUTPUT"
 
             - name: dispatch target-updated
               if: steps.changed-files.outputs.any_changed == 'true'
@@ -42,5 +62,4 @@ jobs:
                   token: ${{ secrets.AUTOMERGE_GITHUB_TOKEN }}
                   repository: ${{ matrix.repo }}
                   event-type: target-updated
-                  client-payload: >-
-                      ${{ format('{{"changed_files": {0}}}', steps.changed-files.outputs.all_changed_files) }}
+                  client-payload: ${{ steps.build-payload.outputs.json }}
