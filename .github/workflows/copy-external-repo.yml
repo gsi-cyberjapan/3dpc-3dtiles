@@ -20,11 +20,17 @@ jobs:
                   token: ${{ secrets.AUTOMERGE_GITHUB_TOKEN }}
                   path: source-repo
                   ref: main
+            - name: Build file list
+              run: |
+                  echo '${{ toJSON(github.event.client_payload.changed_files) }}' \
+                    | jq -r '.[]' > files.txt
+                  echo "Files to copy:"; cat files.txt
             - name: Copy updated files with rsync
               run: |
-                  echo "${{ github.event.client_payload.changed_files }}" \
-                    | tr ',' '\n' > files.txt
-                  rsync -av --files-from=files.txt source-repo/ .
+                  rsync -av \
+                    --files-from=files.txt \
+                    --exclude='.git' \
+                    source-repo/ .
             - name: Remove nested git metadata
               run: rm -rf source-repo
             - name: Configure Git user
