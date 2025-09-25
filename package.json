@@ -10,8 +10,12 @@
         "format:fix": "prettier --write .",
         "format:check": "prettier --check .",
         "test": "docker compose run --rm test npx playwright test",
+        "test:report": "docker compose run --rm -p 9323:9323 test npx playwright show-report --host 0.0.0.0 --port 9323",
         "test:e2e": "docker compose run --rm test npm run _test:e2e:inside",
         "test:vrt": "docker compose run --rm test npm run _test:vrt:inside",
+        "snapshot:update": "docker compose run --rm test npx playwright test --update-snapshots",
+        "snapshot:update:e2e": "docker compose run --rm test npx playwright test --update-snapshots --project=e2e-chromium --project=e2e-mobile-safari",
+        "snapshot:update:vrt": "docker compose run --rm test npx playwright test --update-snapshots --project=vrt-chromium-light --project=vrt-chromium-dark --project=vrt-mobile-safari",
         "_test:e2e:inside": "npx playwright test --project=e2e-chromium --project=e2e-mobile-safari",
         "_test:vrt:inside": "npx playwright test --project=vrt-chromium-light --project=vrt-chromium-dark --project=vrt-mobile-safari"
     },
