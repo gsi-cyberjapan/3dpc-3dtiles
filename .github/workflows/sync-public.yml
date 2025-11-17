@@ -32,5 +32,5 @@ jobs:
 
                   git remote add private ../private
                   git fetch private
-                  git merge private/gh-pages
+                  git merge private/main
                   git push origin gh-pages
