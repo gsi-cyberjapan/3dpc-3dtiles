@@ -33,4 +33,4 @@ jobs:
                   git remote add private ../private
                   git fetch private
                   git merge private/main
-                  git push origin gh-pages
+                  git push origin main
