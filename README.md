@@ -6,7 +6,7 @@
 - 公開期間は、2025年3月26日から公開終了までとなります。
 - 点群タイルは、[国土地理院コンテンツ利用規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)に従って利用できます。データを利用する際は、「国土地理院点群タイル（試験公開）」などと、出典の明示を行ってください。
 - 点群タイルは基本測量成果と位置付けているものではありませんが、基本測量成果としての提供を検討するにあたって、試験的に公開を行うものです。
-- 本レポジトリで公開しているソースの利用上の留意点は次の通りです。[LICENSE](https://github.com/gsimaps-cicd/3dpc-3dtiles/blob/main/LICENSE.txt)もあわせてご参照ください。
+- 本レポジトリで公開しているソースの利用上の留意点は次の通りです。[LICENSE](https://github.com/gsi-cyberjapan/3dpc-3dtiles/blob/main/LICENSE.txt)もあわせてご参照ください。
     - MapLibre GL JS 等の既存ソフトウェアについては、既存ソフトウェアのライセンスが適用されます。
     - 国土地理院により作成された部分については、[国土地理院コンテンツ利用規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)により、BSD-2-Clause licenseを適用しています。
     - 本レポジトリにプルリクエストを頂く場合、当該変更を当レポジトリに取り込んだ時点で、上記の国土地理院クレジットによるBSD-2-Clause licenseの適用とさせていただくことを予めご承知おきください。
