@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { ImmutableLike } from "react-map-gl/maplibre";
-import nextConfig from "../../next.config";
 
 export interface MapStyle {
     id: string;
@@ -10,19 +9,31 @@ export interface MapStyle {
     icon?: string;
 }
 
-const basePath = nextConfig.basePath || "";
+const basePath = (() => {
+    const injected = (typeof process !== "undefined" && process.env.NEXT_PUBLIC_BASE_PATH) || "";
+    if (injected) return injected;
+
+    if (typeof window !== "undefined") {
+        if (window.location.hostname.endsWith("github.io")) {
+            const segs = window.location.pathname.split("/").filter(Boolean);
+            if (segs.length > 0) return "/" + segs[0];
+        }
+    }
+    // Cloudflare Pages etc.
+    return "";
+})();
+
+console.warn("BASE_PATH:", basePath);
 
 const getAbsoluteUrl = (path: string) => {
+    // if local development (localhost), return relative path
     if (typeof window !== "undefined" && window.location.hostname === "localhost") {
         return `${basePath}${path}`;
     }
 
-    if (basePath === "") {
-        return path;
-    }
-
-    const repoName = "3dpc-3dtiles";
-    return `https://gsi-cyberjapan.github.io/${repoName}${path}`;
+    // in production, return absolute URL
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    return `${origin}${basePath}${path}`;
 };
 
 const DEFAULT_MAP_STYLES: MapStyle[] = [
